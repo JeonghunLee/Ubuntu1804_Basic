@@ -12,3 +12,6 @@
 Refer to 
  * https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251
  * https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#downloading
+ * https://www.codingforentrepreneurs.com/blog/install-django-on-linux-ubuntu/
+ * https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart
+
