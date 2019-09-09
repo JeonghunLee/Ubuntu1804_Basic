@@ -8,5 +8,7 @@
 * RAM: DDR4 32G
 * DISPLAY: FULL HD
 
+
 Refer to 
   https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251
+  https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#downloading
