@@ -59,7 +59,8 @@ install_NVIDIA(){
    sudo sh -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/'$release'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list'
    sudo apt update
    sudo apt install nvidia-driver-430 
-   nvidia-smi
+   PRINT=`nvidia-smi`
+   echo "$PRINT"
 }
 
 check_GraphicCard() {
@@ -91,9 +92,6 @@ check_Ubuntu() {
        VERSION=`lsb_release -sr`
        echo "Check Linux: Ubuntu $VERSION"
    fi 	   
-
-   #release="ubuntu"$(lsb_release -sr | sed -e "s/\.//g")
-   #echo $UBUNTU
 }
 
 check_CPU
