@@ -37,6 +37,8 @@ install_basic(){
 	echo "---- alreadly installed vim"
    else
         sudo apt install vim
+	sudo apt install curl
+	sudo apt install minicom
         sudo apt install cheese
    fi
 
@@ -46,8 +48,12 @@ install_basic(){
    if [ ${CHECK_PKG} -gt 10 ]; then
 	echo "---- alreadly installed cheese"
    else
+	sudo apt install git
+	sudo apt install smartgit
         sudo apt install python3-pip
-	sudo apt install python-pip	
+	sudo apt install python-pip
+        sudo pip install notebook	
+        sudo pip3 install notebook	
    fi
 }
 
