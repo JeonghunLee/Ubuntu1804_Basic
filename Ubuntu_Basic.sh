@@ -37,17 +37,21 @@ install_basic(){
 	echo "---- alreadly installed vim"
    else
         sudo apt install vim
+        sudo apt install cheese
    fi
 
-   CHECK_PKG=`dpkg -l | grep cheese`
+   CHECK_PKG=`dpkg -l | grep python`
    CHECK_PKG=`expr length "$CHECK_PKG"`
 
    if [ ${CHECK_PKG} -gt 10 ]; then
 	echo "---- alreadly installed cheese"
    else
-        sudo apt install vim
+        sudo apt install python3-pip
+	sudo apt install python-pip	
    fi
 }
+
+
 
 
 update_ubuntu
