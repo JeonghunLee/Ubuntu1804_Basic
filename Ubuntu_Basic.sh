@@ -54,6 +54,7 @@ install_basic(){
 
 
 
+
 update_ubuntu
 install_chrome
 install_basic
