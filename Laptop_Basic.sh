@@ -1,27 +1,50 @@
 #!/bin/bash 
 #
+# Lenovo Y540-15IRH LEGION
+# Check for installing Ubuntu Package
+# 
+# BIOS in this latop is not working properly , especially ACIP Part  
+# so it's convinient to install Ubuntu system
+#
+#
 # Author: Jeonghun Lee
+# https://ahyuo.blogspot.com/search/label/Laptop-Ubuntu
 #
+# refer to
+# - Laptop info
+# https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251
 #
+# - How to use Bash Shell 
+# https://misc.flogisoft.com/bash/tip_colors_and_formatting
+# https://ryanstutorials.net/bash-scripting-tutorial/bash-input.php
+# 
 
 LAPTOP_NAME=Lenovo_Y540
 DATE=$(date)
 
-echo "Today $DATE"
-echo "Start Checking $LAPTOP_NAME Laptop"
+echo -e "\e[91mStart Checking $LAPTOP_NAME Laptop\e[39m\n"
+
+echo -e "\e[91mPlease check your date/time"
+echo -e "\e[39mToday $DATE"
+
 
 check_CPU() {
+
+   echo -e "\e[91m>>> Checking your CPU $ARCHITECTURE\e[39m"
 
    ARCHITECTURE=`uname -m`
    if [ "$ARCHITECTURE" != "x86_64" ] && [ "$ARCHITECTURE" != "aarch64" ] ; then
        echo "$LAPTOP_NAME is not supported any more on 32-bit systems."
        exit 1
+   else
+       echo "Your CPU is $ARCHITECTURE"
    fi
 
-   echo "-- Checked your CPU $ARCHITECTURE"
 }
 
 check_WIFI() {
+
+   echo -e "\e[91m>>> Checking your WIFI system\e[39m"
 
    CHECK_IDEAPAD=`lsmod | grep ideapad_laptop`
    if [ $CHECK_IDEAPAD ]; then
@@ -44,9 +67,8 @@ check_WIFI() {
           fi 
        fi
    else
-       echo "WIFI Driver Ok "
+       echo "WIFI Driver Ok!!"
    fi	   
-   echo "-- Checked your WIFI Driver "
 }
 
 
@@ -64,6 +86,8 @@ install_NVIDIA(){
 }
 
 check_GraphicCard() {
+
+   echo -e "\e[91m>>> Checking your graphic card like NVIDIA not Intel \e[39m"
   
    CHECK_NVIDIA=/proc/driver/nvidia/version
    CHECK_RTX2060=`lspci -k | grep 1f11`
@@ -75,16 +99,17 @@ check_GraphicCard() {
          fi
 	 echo "already Installed NVIDIA-Driver Ok"
 	 nvidia-smi
+         echo "checked NVIDIA graphic card"
    else
 	 echo " not installed NVIDIA-Driver"   
 	 install_NVIDIA
    fi
 
-   echo "-- Checked NVIDIA Graphic Card Driver "
-
 }
 
 check_Ubuntu() {
+
+   echo -e "\e[91m>>> Checking your Linux e.g Ubuntu Version\e[39m"
 
    UBUNTU=`uname -v | grep Ubuntu`
 
