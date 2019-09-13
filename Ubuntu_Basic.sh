@@ -189,7 +189,6 @@ install_option(){
        install_pycharm
     fi
 
-
 }
 
 
