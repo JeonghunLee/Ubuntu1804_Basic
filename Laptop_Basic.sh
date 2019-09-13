@@ -124,3 +124,5 @@ check_WIFI
 check_GraphicCard
 check_Ubuntu
 
+echo -e "\e[91m>>> finished default check list \e[39m"
+
