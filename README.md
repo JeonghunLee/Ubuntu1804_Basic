@@ -1,13 +1,14 @@
 # Ubuntu 18.04 for Lenovo Y540-15IRH LEGION
 
-- Laptop Information 
-* Laptop Lenovo Y540-15IRH LEGION i7 Prime 2060
-* OS: FreeDos 
-* CPU: i7-9750H 
-* GPU : Geforce RTX 2060
-* Storage : NVMe 1T, HDD 1
-* RAM: DDR4 32G
-* DISPLAY: FULL HD
+* Laptop Information
+
+** Laptop Lenovo Y540-15IRH LEGION i7 Prime 2060
+** OS: FreeDos 
+** CPU: i7-9750H 
+** GPU : Geforce RTX 2060
+** Storage : NVMe 1T, HDD 1
+** RAM: DDR4 32G
+** DISPLAY: FULL HD
 
 
 Refer to 
