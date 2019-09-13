@@ -126,7 +126,7 @@ install_anaconda(){
    if [ -d $CHECK_PKG  ]; then
         echo "alreadly installed Anaconda"
    else
-        echo "start downloading Anaconda package $CHECK_PKG"
+        echo "start downloading Anaconda package"
         wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
         CHECKSUM=`mdsum Anaconda3-2019.07-Linux-x86_64.sh`
         if [ CHECKSUM -eq "63f63df5ffedf3dbbe8bbf3f56897e07"]; then
@@ -138,7 +138,69 @@ install_anaconda(){
 
 
 
+install_virtualbox(){
+
+## https://tecadmin.net/install-virtualbox-on-ubuntu-18-04/
+
+   CHECK_PKG=`dpkg -l | grep virtualbox`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10  ]; then
+        echo "alreadly installed virtualbox "
+   else
+        echo "start installing virtualbox "
+        ADD_KEY=`wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -`
+	ADD_KEY=`wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -`
+        sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"
+	sudo apt update
+	sudo apt install virtualbox-6.0
+   fi
+}
+
+install_pycharm(){
+
+## https://itsfoss.com/use-snap-packages-ubuntu-16-04/
+## https://linuxize.com/post/how-to-install-pycharm-on-ubuntu-18-04/
+
+   CHECK_PKG=`snap find pycharm-community`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10  ]; then
+        echo "alreadly installed pycharm-communnity"
+   else
+        echo "start installing pycharm-community "
+	sudo snap install pycharm-community --classic
+   fi
+}
+
+
+
+install_option(){
+
+    echo -e "\e[91m>>> do you want to install virtualbox 6.0?\nYes or No (y/n) \e[39m"
+    read ANS
+    if [ $ANS == "y" ] || [ $ANS == "Y" ]; then
+       install_virtualbox
+    fi
+
+    echo -e "\e[91m>>> do you want to install pycharm\nYes or No (y/n) \e[39m"
+    read ANS
+    if [ $ANS == "y" ] || [ $ANS == "Y" ]; then
+       install_pycharm
+    fi
+
+
+}
+
+
+
+
+
 update_ubuntu
 install_chrome
 install_basic
 install_anaconda
+install_option
+
+echo -e "\e[91m>>> finished chekcing ubuntu packages \e[39m"
+
