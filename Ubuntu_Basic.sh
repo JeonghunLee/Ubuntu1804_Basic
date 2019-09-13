@@ -14,7 +14,8 @@
 #
 # if syntenx in Bash Shell script 
 # - http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
-# awk
+#
+# Gawk/awk
 # - http://tldp.org/LDP/Bash-Beginners-Guide/html/chap_06.html
  
 
@@ -46,7 +47,7 @@ install_chrome(){
         sudo rm -rf /etc/apt/sources.list.d/google.list
    fi
 
-   echo -e "\e[91m>>> check skype \e[39m"
+   echo -e "\e[91m>>> check skype package not use snap \e[39m"
 
    CHECK_PKG0=`dpkg -l | grep gdebi-core`
    CHECK_PKG0=`expr length "$CHECK_PKG0"`
@@ -66,23 +67,24 @@ install_chrome(){
 
 install_basic(){
 
-   echo -e "\e[91m>>> check vim/curl/minicom/cheese \e[39m"
+   echo -e "\e[91m>>> check vim/curl/build-essential/minicom/cheese \e[39m"
 
    CHECK_PKG=`dpkg -l | grep vim`
    CHECK_PKG=`expr length "$CHECK_PKG"`
 
    if [ ${CHECK_PKG} -gt 10  ]; then
-	echo "alreadly installed vim"
+	echo "alreadly installed vim and others "
    else
         sudo apt install vim
+        sudo apt install build-essential
 	sudo apt install curl
 	sudo apt install minicom
         sudo apt install cheese
    fi
 
-   echo -e "\e[91m>>> check git/smartgit \e[39m"
+   echo -e "\e[91m>>> check git/smartgit package \e[39m"
 
-   CHECK_PKG=`dpkg -l | grep python`
+   CHECK_PKG=`dpkg -l | grep smartgit`
    CHECK_PKG=`expr length "$CHECK_PKG"`
 
    if [ ${CHECK_PKG} -gt 10 ]; then
@@ -91,6 +93,69 @@ install_basic(){
         sudo apt install git
         sudo apt install smartgit
    fi
+
+   echo -e "\e[91m>>> check snap package \e[39m"
+
+####
+#   
+## How to use SNAP Package
+#
+# - https://itsfoss.com/use-snap-packages-ubuntu-16-04/
+# - https://snapcraft.io/
+# - https://tutorials.ubuntu.com/tutorial/basic-snap-usage
+#
+####
+
+   CHECK_PKG=`dpkg -l | grep snapd`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10 ]; then
+        echo "alreadly installed snap"
+   else
+        sudo apt install snapd
+   fi
+
+   echo -e "\e[91m>>> check docker package \e[39m"
+
+####
+#
+## 2 Ways how to Install docker e.g apt,snap 
+# 
+# - https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+# - https://www.unixtutorial.org/how-to-install-docker-in-ubuntu-using-snap   
+# - https://www.unixtutorial.org/install-docker-in-linux-mint-19-1   
+#
+####
+
+ 
+   CHECK_PKG=`snap list | grep docker`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+  
+   if [ ${CHECK_PKG} -gt 10 ]; then
+        echo "alreadly installed docker by using snap "
+        echo "try to remove docker in snap packages"
+        sudo snap remove docker
+   fi
+
+   CHECK_PKG=`dpkg -l | grep docker`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10 ]; then
+        echo "alreadly installed docker by dpkg"
+   else
+        sudo apt install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+        sudo apt update
+        READ=`apt-cache policy docker-ce`
+        echo -e "$READ"	
+        sudo apt install docker-ce
+	READ=`sudo systemctl status docker`
+        echo -e "$READ"	
+   fi
+}
+
+install_python(){
 
    echo -e "\e[91m>>> check python/python3 \e[39m"
 
@@ -102,7 +167,7 @@ install_basic(){
    else
         sudo apt install python3-pip
         sudo apt install python-pip
-   fi   
+   fi
 
    VER=`python2 --version`
    echo  "$VER"
@@ -120,11 +185,7 @@ install_basic(){
         sudo pip install notebook
         sudo pip3 install notebook
    fi
-
-}
-
-install_anaconda(){
-
+	
    echo -e "\e[91m>>> check anaconda for python2/3 \e[39m"
    ID=`whoami`
    CHECK_PKG="/home/$ID/anaconda3"
@@ -146,7 +207,14 @@ install_anaconda(){
 
 install_virtualbox(){
 
-## https://tecadmin.net/install-virtualbox-on-ubuntu-18-04/
+
+####	
+#
+## How To install VirtualBox 6.0 
+#
+# - https://tecadmin.net/install-virtualbox-on-ubuntu-18-04/
+#
+####
 
    CHECK_PKG=`dpkg -l | grep virtualbox`
    CHECK_PKG=`expr length "$CHECK_PKG"`
@@ -161,14 +229,24 @@ install_virtualbox(){
 	sudo apt update
 	sudo apt install virtualbox-6.0
    fi
+
+   VERSION=`dpkg -l | grep virtualbox | awk '{ print $2 }'`
+   echo "$VERSION"
+
+
 }
 
 install_pycharm(){
 
-## https://itsfoss.com/use-snap-packages-ubuntu-16-04/
-## https://linuxize.com/post/how-to-install-pycharm-on-ubuntu-18-04/
+####    
+#
+## How To install pyCharm IDE
+#
+# - https://linuxize.com/post/how-to-install-pycharm-on-ubuntu-18-04/
+#
+####
 
-   CHECK_PKG=`snap find pycharm-community`
+   CHECK_PKG=`snap list | grep pycharm-community`
    CHECK_PKG=`expr length "$CHECK_PKG"`
 
    if [ ${CHECK_PKG} -gt 10  ]; then
@@ -177,19 +255,23 @@ install_pycharm(){
         echo "start installing pycharm-community "
 	sudo snap install pycharm-community --classic
    fi
+
+   VERSION=`snap list | grep pycharm-community | awk '{ print $1 " " $2 }'`
+   echo "$VERSION"
+      
 }
 
 
 
 install_option(){
 
-    echo -e "\e[91m>>> do you want to install virtualbox 6.0?\nYes or No (y/n) \e[39m"
+    echo -e "\e[91m>>> Do you want to install virtualbox 6.0?\nYes or No (y/n) \e[39m"
     read ANS
     if [ $ANS == "y" ] || [ $ANS == "Y" ]; then
        install_virtualbox
     fi
 
-    echo -e "\e[91m>>> do you want to install pycharm\nYes or No (y/n) \e[39m"
+    echo -e "\e[91m>>> Do you want to install pycharm\nYes or No (y/n) \e[39m"
     read ANS
     if [ $ANS == "y" ] || [ $ANS == "Y" ]; then
        install_pycharm
@@ -199,12 +281,10 @@ install_option(){
 
 
 
-
-
 update_ubuntu
 install_chrome
 install_basic
-install_anaconda
+install_python
 install_option
 
 echo -e "\e[91m>>> finished chekcing ubuntu packages \e[39m"
