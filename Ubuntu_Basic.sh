@@ -57,7 +57,27 @@ install_basic(){
    fi
 }
 
+install_anaconda(){
 
+   CHECK_PKG=`dpkg -l | grep vim`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10 ]; then
+        echo "---- alreadly installed Anaconda"
+   else
+        wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+        CHECKSUM=`mdsum Anaconda3-2019.07-Linux-x86_64.sh`
+        if [ CHECKSUM -eq "63f63df5ffedf3dbbe8bbf3f56897e07"]; then
+               echo " try to install"
+	fi
+
+
+   fi
+
+
+
+
+}
 
 
 
