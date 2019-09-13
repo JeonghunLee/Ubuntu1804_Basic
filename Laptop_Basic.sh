@@ -33,7 +33,7 @@ check_CPU() {
    echo -e "\e[91m>>> Checking your CPU $ARCHITECTURE\e[39m"
 
    ARCHITECTURE=`uname -m`
-   if [ "$ARCHITECTURE" != "x86_64" ] && [ "$ARCHITECTURE" != "aarch64" ] ; then
+   if [ "$ARCHITECTURE" != "x86_64" ]; then
        echo "$LAPTOP_NAME is not supported any more on 32-bit systems."
        exit 1
    else
