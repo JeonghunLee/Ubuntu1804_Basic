@@ -5,6 +5,7 @@
 # 
 # 
 # Author: Jeonghun Lee
+# Ver :0.1
 #
 # refer to 
 # http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
