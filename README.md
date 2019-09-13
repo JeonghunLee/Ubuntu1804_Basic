@@ -1,6 +1,6 @@
-# Ubuntu 18.04 for Lenovo Y540-15IRH LEGION
+## Ubuntu 18.04 for Lenovo Y540-15IRH LEGION
 
-* Laptop Information
+### Laptop Information
 
 * Laptop Lenovo Y540-15IRH LEGION i7 Prime 2060
 * OS: FreeDos 
@@ -11,7 +11,7 @@
 * DISPLAY: FULL HD
 
 
-Refer to 
+### Refer to  
  https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251  
  https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#downloading  
  https://www.codingforentrepreneurs.com/blog/install-django-on-linux-ubuntu/  
