@@ -7,16 +7,18 @@
 # so it's convinient to install Ubuntu system
 #
 #
-# Author: Jeonghun Lee
+# Author  : Jeonghun Lee
+# Version : 0.1 
 # https://ahyuo.blogspot.com/search/label/Laptop-Ubuntu
 #
-# refer to
-# - Laptop info
-# https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251
+# Refer to
 #
-# - How to use Bash Shell 
-# https://misc.flogisoft.com/bash/tip_colors_and_formatting
-# https://ryanstutorials.net/bash-scripting-tutorial/bash-input.php
+# - Laptop info
+#   https://forums.lenovo.com/t5/Gaming-Laptops-Knowledge-Base/Installing-Ubuntu-on-the-Legion-Y530/ta-p/4187251
+#
+# - How to use Bash Color / Input
+#   https://misc.flogisoft.com/bash/tip_colors_and_formatting
+#   https://ryanstutorials.net/bash-scripting-tutorial/bash-input.php
 # 
 
 LAPTOP_NAME=Lenovo_Y540

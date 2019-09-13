@@ -4,14 +4,19 @@
 # it's convinient to install Ubuntu packages I want 
 # 
 # 
-# Author: Jeonghun Lee
-# Ver :0.1
+# Author  : Jeonghun Lee
+# Version : 0.1
 #
-# refer to 
-# http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
-# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
-# http://tldp.org/LDP/Bash-Beginners-Guide/html/chap_06.html
+# Refer to 
 # 
+# How to use Bash Shell Script
+# - http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
+#
+# if syntenx in Bash Shell script 
+# - http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+# awk
+# - http://tldp.org/LDP/Bash-Beginners-Guide/html/chap_06.html
+ 
 
 VERSION=`lsb_release -sr`
 echo -e "\e[91mStart checking Ubuntu $VERSION package \e[39m\n"
