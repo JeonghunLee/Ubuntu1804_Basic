@@ -17,7 +17,10 @@
 #
 # Gawk/awk
 # - http://tldp.org/LDP/Bash-Beginners-Guide/html/chap_06.html
- 
+#
+# SED 
+# - http://www.yourownlinux.com/2015/04/sed-command-in-linux-append-and-insert-lines-to-file.html
+#  /etc/pulse/default.pa 
 
 VERSION=`lsb_release -sr`
 echo -e "\e[91mStart checking Ubuntu $VERSION package \e[39m\n"
@@ -94,6 +97,23 @@ install_basic(){
         sudo apt install smartgit
    fi
 
+   echo -e "\e[91m>>> check echo cancel function in Audio \e[39m"
+
+
+#  Echo Cancel Function    
+# - https://www.youtube.com/watch?v=gKsBAEnVxEA
+# 
+
+   CHECK_PKG=`grep -e "module-echo-cancel" /etc/pulse/default.pa`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+   
+   if [ ${CHECK_PKG} -gt 10 ]; then
+        echo "already added echo cancle function into /etc/pulse/default.pa"
+   else	
+        sudo sed -i '/load-module module-filter-apply/ a load-module module-echo-cancel' /etc/pulse/default.pa
+   fi
+
+
    echo -e "\e[91m>>> check snap package \e[39m"
 
 ####
@@ -117,9 +137,11 @@ install_basic(){
 
    echo -e "\e[91m>>> check docker package \e[39m"
 
+   
+
 ####
 #
-## 2 Ways how to Install docker e.g apt,snap 
+## 2 Ways how to Install docker e.g apt,snap , not used snap version  
 # 
 # - https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 # - https://www.unixtutorial.org/how-to-install-docker-in-ubuntu-using-snap   
