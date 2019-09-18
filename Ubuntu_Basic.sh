@@ -255,6 +255,17 @@ install_virtualbox(){
 	echo "Start installing virtualbox 6.0 Extension Pack "
 	wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
 	sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
+        TEST=`sudo VBoxManage list extpacks`
+	echo "$TEST"
+	sudo usermod -a -G vboxusers $USER
+	sudo usermod -a -G vboxsf "$USER"
+        #
+	# https://blogger.pe.kr/523
+	# /lib/udev/rules.d/50-udev-default.rules
+	# libusb device nodes  644->666
+        # SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0666"
+	# 
+
    fi
 
    VERSION=`dpkg -l | grep virtualbox | awk '{ print $2 }'`
