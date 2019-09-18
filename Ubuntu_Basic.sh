@@ -235,21 +235,26 @@ install_virtualbox(){
 ## How To install VirtualBox 6.0 
 #
 # - https://tecadmin.net/install-virtualbox-on-ubuntu-18-04/
-#
+# - https://www.linuxtechi.com/install-virtualbox6-ubuntu-18-04-centos-7/
 ####
 
    CHECK_PKG=`dpkg -l | grep virtualbox`
    CHECK_PKG=`expr length "$CHECK_PKG"`
 
    if [ ${CHECK_PKG} -gt 10  ]; then
-        echo "alreadly installed virtualbox "
+        echo "alreadly installed virtualbox 6.0"
    else
-        echo "start installing virtualbox "
+        echo "Start setting for virtualbox 6.0"
         ADD_KEY=`wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -`
 	ADD_KEY=`wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -`
-        sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"
+        #sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"
+	sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
 	sudo apt update
-	sudo apt install virtualbox-6.0
+	echo "Start installing virtualbox 6.0 "
+	sudo apt install virtualbox-6.0 -y
+	echo "Start installing virtualbox 6.0 Extension Pack "
+	wget https://download.virtualbox.org/virtualbox/6.0.0/Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
+	sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.0.0.vbox-extpack
    fi
 
    VERSION=`dpkg -l | grep virtualbox | awk '{ print $2 }'`
