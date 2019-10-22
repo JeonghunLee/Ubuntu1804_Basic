@@ -94,10 +94,14 @@ install_basic(){
 	echo "alreadly installed git/smartgit"
    else
         sudo apt install git
-        sudo apt install smartgit
+#       sudo apt install smartgit
+## smartgit is not free
+## I am using git-cola
+
    fi
 
    echo -e "\e[91m>>> check echo cancel function in Audio \e[39m"
+
 
 
 # not used this 
@@ -122,6 +126,7 @@ install_basic(){
 # only install this package below 
 # https://itsfoss.com/fix-right-click-touchpad-ubuntu/
 # sudo apt install gnome-tweaks
+
 
 
 
