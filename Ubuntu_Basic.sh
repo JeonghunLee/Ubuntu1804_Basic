@@ -100,6 +100,32 @@ install_basic(){
    echo -e "\e[91m>>> check echo cancel function in Audio \e[39m"
 
 
+# not used this 
+# mouse problem   
+# https://ubuntuforums.org/showthread.php?t=2410517
+# sudo update-alternatives --config x-cursor-theme
+# 
+#   Selection    Path                                     Priority   Status
+#------------------------------------------------------------
+#* 0            /usr/share/icons/DMZ-White/cursor.theme   100       auto mode
+#  1            /etc/X11/cursors/core.theme               30        manual mode
+#  2            /etc/X11/cursors/handhelds.theme          20        manual mode
+#  3            /etc/X11/cursors/redglass.theme           20        manual mode
+#  4            /etc/X11/cursors/whiteglass.theme         20        manual mode
+#  5            /usr/share/icons/Adwaita/cursor.theme     90        manual mode
+#  6            /usr/share/icons/DMZ-Black/cursor.theme   30        manual mode
+#  7            /usr/share/icons/DMZ-White/cursor.theme   100       manual mod
+#
+# vi ~/.Xresources
+# Xcursor.size: 48
+# 
+# only install this package below 
+# https://itsfoss.com/fix-right-click-touchpad-ubuntu/
+# sudo apt install gnome-tweaks
+
+
+
+
 #  Echo Cancel Function    
 # - https://www.youtube.com/watch?v=gKsBAEnVxEA
 # 
