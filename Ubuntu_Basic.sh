@@ -331,6 +331,31 @@ install_pycharm(){
 }
 
 
+install_notepadplus(){
+
+####    
+#
+## How To install notepad++
+#
+# - https://itsfoss.com/notepad-plus-plus-linux/
+#
+####
+
+   CHECK_PKG=`snap list | grep notepad-plus-plus`
+   CHECK_PKG=`expr length "$CHECK_PKG"`
+
+   if [ ${CHECK_PKG} -gt 10  ]; then
+        echo "alreadly installed notepad-plus-plus"
+   else
+        echo "start installing notepad-plus-plus"
+	sudo snap install notepad-plus-plus
+   fi
+
+   VERSION=`snap list | grep notepad-plus-plus | awk '{ print $1 " " $2 }'`
+   echo "$VERSION"
+      
+}
+
 
 install_option(){
 
@@ -354,6 +379,7 @@ update_ubuntu
 install_chrome
 install_basic
 install_python
+install_notepadplus
 install_option
 
 echo -e "\e[91m>>> finished chekcing ubuntu packages \e[39m"
